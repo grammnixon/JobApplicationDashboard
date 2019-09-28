@@ -143,7 +143,6 @@ $('#btnShowCook').click(function() {
 //Add Favorite functionality
 function setFavorite(idOfButton) {
     document.getElementById(idOfButton).value = 1;
-    console.log(document.getElementById(idOfButton).value);
     document.getElementById(idOfButton).classList.add('disabled');
     document.getElementById(idOfButton).setAttribute('disabled','disabled');
     document.getElementById('btnShowFavorites').classList.remove('d-none');
@@ -183,13 +182,11 @@ $('#btnViewAll').click(function() {
 
 function resetAvailability() {
     var appendedAvailabilityChildren = document.getElementById("appendedAvailability");
-    console.log(appendedAvailabilityChildren);
     while (appendedAvailabilityChildren.hasChildNodes()) {
         appendedAvailabilityChildren.removeChild(appendedAvailabilityChildren.firstChild);
     }
 
     var appendedQuestionsChildren = document.getElementById("interviewQuestions");
-    console.log(appendedQuestionsChildren);
     while (appendedQuestionsChildren.hasChildNodes()) {
         appendedQuestionsChildren.removeChild(appendedQuestionsChildren.firstChild);
     }
@@ -204,11 +201,6 @@ function showFullApplication(idOfButton) {
     var appliedDate = "Date applied to position: " + jsonVar[appToShow-1].applied;
     var yoe = "Years of experience: " + jsonVar[appToShow-1].experience;
 
-    var questionText = "Question: " + JSON.stringify(jsonVar[appToShow-1].questions.text);
-    var answerText = "Answer: " + JSON.stringify(jsonVar[appToShow-1].questions.answer);
-
-    
-    console.log(appToShow);
     document.getElementById("applicationModalTitle").innerHTML = jsonVar[appToShow-1].name;
     document.getElementById("fullApplicationPosition").innerHTML = position;
     document.getElementById("fullApplicationDate").innerHTML = appliedDate;
@@ -216,8 +208,6 @@ function showFullApplication(idOfButton) {
 
     //Looping through keys of JSON to pull availability out per day
     for (var i = 0; i < Object.keys(jsonVar[appToShow-1].availability).length; i++) {
-        console.log(Object.keys(jsonVar[appToShow-1].availability)[i]);
-        console.log(Object.values(jsonVar[appToShow-1].availability)[i]);
         //Creating new 'p' object to append to div to display the availability
         var pAvailability = document.createElement("P");
         //Switch to display availability based on which letter (key) was pulled from JSON object
@@ -283,9 +273,7 @@ function showFullApplication(idOfButton) {
 
     }
     var questions = jsonVar[appToShow-1].questions;
-    console.log(questions[0].text);
     var numQuestions = questions.length;
-    console.log(numQuestions);
 
     for (var i = 0; i < numQuestions; i++) {
         var pQuestions = document.createElement("P");
