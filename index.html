@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- Search functionality -->
+    <nav class="navbar navbar-light justify-content-center mt-4">
+    <form class="form-inline">
+        <button type="button" class="btn btn-primary btn-lg mr-3" id="btnSortName">Sort by Position</button>
+        <button type="button" class="btn btn-primary btn-lg mr-3" id="btnSortDate">Sort by Date Applied</button>
+        <button type="button" class="btn btn-success btn-lg mr-3" id="btnShowFavorites">Show Favorites</button>
+        <input class="form-control form-control-lg mr-sm-2" type="search" placeholder="Search for a Name:" id="search">
+        <button type="button" class="btn btn-danger btn-lg mr-3" onClick="window.location.reload();">Reset</button>
+    </form>
+</nav>
+
+<!-- Applications -->
+<div class="layout-margin-8 mt-2">
+    <div class="card-deck">
+        <div class="card card-shadow text-center">
+            <div class="card-body" value=1>
+                <h4 class="card-title" id="cardName1">Placeholder</h4>
+                <p class="card-text" id="cardPosition1">Position</p>
+                <div class="dropdown-divider"></div>
+                <p class="card-text card-date" id="applyDate1">Date</p>
+                <!--Button to trigger modal view of full application-->
+                <!-- added ID to each button to allow for JS to pull the value associated with each ID-->
+                <button type="button" class="btn btn-primary btnFullApp" id="fullApp1" value=1 onclick="showFullApplication(this.id)" data-toggle="modal" data-target="#applicationModal">
+                    View Full Application
+                  </button>
+                <button type="button" class="btn btn-success btnFave" id="setFavorite1" value=0 onclick="setFavorite(this.id)">
+                    Set as Favorite
+                  </button>
+            </div>
+        </div>
+        <div class="card card-shadow text-center">
+            <div class="card-body" value=2>
+                <h4 class="card-title" id="cardName2">Placeholder</h4>
+                <p class="card-text" id="cardPosition2">Position</p>
+                <div class="dropdown-divider"></div>
+                <p class="card-text card-date" id="applyDate2">Date</p>
+                <!-- added ID to each button to allow for JS to pull the value associated with each ID-->
+                <button type="button" class="btn btn-primary btnFullApp" id="fullApp2" value=2 onclick="showFullApplication(this.id)" data-toggle="modal" data-target="#applicationModal">
+                    View Full Application
+                </button>
+                <button type="button" class="btn btn-success btnFave" id="setFavorite2" value=0 onclick="setFavorite(this.id)">
+                    Set as Favorite
+                </button>
+            </div>
+        </div>
+        <div class="card card-shadow text-center">
+            <div class="card-body" value=3>
+                <h4 class="card-title" id="cardName3">Placeholder</h4>
+                <p class="card-text card-position" id="cardPosition3">Position</p>
+                <div class="dropdown-divider"></div>
+                <p class="card-text card-date" id="applyDate3">Date</p>
+                <!-- added ID to each button to allow for JS to pull the value associated with each ID-->
+                <button type="button" class="btn btn-primary btnFullApp" id="fullApp3" value=3 onclick="showFullApplication(this.id)" data-toggle="modal" data-target="#applicationModal">
+                    View Full Application
+                </button>
+                <button type="button" class="btn btn-success btnFave" id="setFavorite3" value=0 onclick="setFavorite(this.id)">
+                    Set as Favorite
+                </button>
+            </div>
+        </div>
+        <div class="card card-shadow text-center">
+            <div class="card-body" value=4>
+                <h4 class="card-title" id="cardName4">Placeholder</h4>
+                <p class="card-text" id="cardPosition4">Position</p>
+                <div class="dropdown-divider"></div>
+                <p class="card-text card-date" id="applyDate4">Date</p>
+                <button type="button" class="btn btn-primary btnFullApp" id="fullApp4" value=4 onclick="showFullApplication(this.id)" data-toggle="modal" data-target="#applicationModal">
+                    View Full Application
+                </button>
+                <button type="button" class="btn btn-success btnFave" id="setFavorite4" value=0 onclick="setFavorite(this.id)">
+                    Set as Favorite
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-- View Full Application Modal -->
+  <div class="modal fade" id="applicationModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="applicationModalTitle">Application</h5>
+          <button type="button" class="close" data-dismiss="modal">
+              <!-- Adding an x in the upper right hand of the window for another way to close -->
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="applicationModalText">
+          <p id ="fullApplicationPosition"></p>
+          <p id="fullApplicationDate"></p>
+          <p id="fullApplicationYOE"></p>
+          <p id="fullApplicationAvailability"></p>
+          <p class="font-weight-bold">Shifts Available per Day:</p>
+          <div id="appendedAvailability">
+              <!-- Empty to add availability as needed-->
+          </div>
+          <div id="interviewQuestions">
+              <!-- Empty to add questions as needed-->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="resetAvailability()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+    </body>
+</html>
