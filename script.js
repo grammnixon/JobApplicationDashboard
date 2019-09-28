@@ -85,7 +85,11 @@ var jsonVar = [
               {
                  "text":"Are you authorized to work in the United States?",
                  "answer":"Yes"
-              }
+              },
+              {
+                "text":"Did you just buy a Subaru Crosstrek?",
+                "answer":"Yes"
+             }
            ]
         }
 ];
@@ -135,10 +139,16 @@ $('#btnShowFavorites').click(function() {
 });
 
 function resetAvailability() {
-    var appendedChildren = document.getElementById("appendedAvailability");
-    console.log(appendedChildren);
-    while (appendedChildren.hasChildNodes()) {
-        appendedChildren.removeChild(appendedChildren.firstChild);
+    var appendedAvailabilityChildren = document.getElementById("appendedAvailability");
+    console.log(appendedAvailabilityChildren);
+    while (appendedAvailabilityChildren.hasChildNodes()) {
+        appendedAvailabilityChildren.removeChild(appendedAvailabilityChildren.firstChild);
+    }
+
+    var appendedQuestionsChildren = document.getElementById("interviewQuestions");
+    console.log(appendedQuestionsChildren);
+    while (appendedQuestionsChildren.hasChildNodes()) {
+        appendedQuestionsChildren.removeChild(appendedQuestionsChildren.firstChild);
     }
 }
 
@@ -229,9 +239,18 @@ function showFullApplication(idOfButton) {
         document.getElementById("appendedAvailability").appendChild(pAvailability);
 
     }
-    console.log(Object.keys(jsonVar[appToShow-1].availability).length);
+    var questions = jsonVar[appToShow-1].questions;
+    console.log(questions[0].text);
+    var numQuestions = questions.length;
+    console.log(numQuestions);
 
-    //document.getElementById("fullApplicationAvailability").innerHTML =availabilityText
+    for (var i = 0; i < numQuestions; i++) {
+        var pQuestions = document.createElement("P");
+        pQuestions.innerHTML += questions[i].text + " : " + questions[i].answer;
+        document.getElementById("interviewQuestions").appendChild(pQuestions)
+    }
+
+
     
 }
 
