@@ -4,14 +4,14 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-        <!-- Search functionality -->
+        <!-- Button Bar -->
     <nav class="navbar navbar-light justify-content-center mt-4">
     <form class="form-inline">
         <button type="button" class="btn btn-primary btn-lg mr-3" id="btnSortName">Sort by Position</button>
         <button type="button" class="btn btn-primary btn-lg mr-3" id="btnSortDate">Sort by Date Applied</button>
-        <button type="button" class="btn btn-success btn-lg mr-3" id="btnShowFavorites">Show Favorites</button>
-        <input class="form-control form-control-lg mr-sm-2" type="search" placeholder="Search for a Name:" id="search">
-        <button type="button" class="btn btn-danger btn-lg mr-3" onClick="window.location.reload();">Reset</button>
+        <button type="button" class="btn btn-primary btn-lg mr-3" id="btnShowCook">Show Cook Applications</button>
+        <button type="button" class="btn btn-success btn-lg mr-3 d-none" id="btnShowFavorites">Show Favorites</button>
+        <button type="button" class="btn btn-success btn-lg mr-3 d-none" id="btnViewAll">View All</button>
     </form>
 </nav>
 
@@ -21,7 +21,7 @@
         <div class="card card-shadow text-center">
             <div class="card-body" value=1>
                 <h4 class="card-title" id="cardName1">Placeholder</h4>
-                <p class="card-text" id="cardPosition1">Position</p>
+                <p class="card-text card-position" id="cardPosition1">Position</p>
                 <div class="dropdown-divider"></div>
                 <p class="card-text card-date" id="applyDate1">Date</p>
                 <!--Button to trigger modal view of full application-->
@@ -80,6 +80,14 @@
         </div>
     </div>
 </div>
+
+<!-- Search and Reset Functions-->
+<nav class="navbar navbar-light justify-content-center mt-4">
+<form class="form-inline">
+    <input class="form-control form-control-lg mr-sm-2" type="search" placeholder="Search all Names:" id="search">
+    <button type="button" class="btn btn-danger btn-lg mr-3" onClick="window.location.reload();">Reset</button>
+    </form>
+</nav>
 
   <!-- View Full Application Modal -->
   <div class="modal fade" id="applicationModal" tabindex="-1">

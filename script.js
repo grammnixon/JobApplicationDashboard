@@ -93,9 +93,7 @@ var jsonVar = [
            ]
         }
 ];
-
-
-//Search by first Name
+ 
 $('#search').keyup(function (){
     $('.card').removeClass('d-none'); //reset the search, removing d-none shows all cards again
     var filter = $(this).val(); // get the value of the input, which we filter on
@@ -119,23 +117,59 @@ $('#btnSortDate').click(function () {
     }).appendTo(".card-deck");
 })
 
+$('#btnShowCook').click(function() {
+    var applications = $('.card-position');
+
+    for (i = 0; i < applications.length; i++) {
+        if (applications.html().localeCompare("Cook")) {
+            applications[i].parentElement.parentElement.classList.add('d-none');
+        }
+    }
+
+    var viewAll = document.getElementById('btnViewAll');
+    viewAll.classList.remove('d-none');
+    
+})
+
 //Add Favorite functionality
 function setFavorite(idOfButton) {
     document.getElementById(idOfButton).value = 1;
     console.log(document.getElementById(idOfButton).value);
     document.getElementById(idOfButton).classList.add('disabled');
     document.getElementById(idOfButton).setAttribute('disabled','disabled');
+    document.getElementById('btnShowFavorites').classList.remove('d-none');
 }
+
 
 //Show Favorites functionality
 $('#btnShowFavorites').click(function() {
     var applications = document.getElementsByClassName('btnFave');
+    var viewFavorites = document.getElementById('btnShowFavorites');
+    var viewAll = document.getElementById('btnViewAll');
     for (i = 0; i < applications.length; i++) {
-        console.log(applications[i].value);
         if (applications[i].value != 1){
             applications[i].parentElement.parentElement.classList.add('d-none');
         }
     }
+    viewFavorites.classList.add('d-none');
+    viewAll.classList.remove('d-none');
+});
+
+//View all functionality
+$('#btnViewAll').click(function() {
+    var applications = document.getElementsByClassName('btnFave');
+    var viewFavorites = document.getElementById('btnShowFavorites');
+    var viewAll = document.getElementById('btnViewAll');
+    for (i = 0; i < applications.length; i++) {
+        if (applications[i].value != 1) {
+            applications[i].parentElement.parentElement.classList.remove('d-none');
+        }
+        else if (applications[i].value == 1) {
+            viewFavorites.classList.remove('d-none');
+        }
+    }
+    viewAll.classList.add('d-none');
+
 });
 
 function resetAvailability() {
@@ -249,19 +283,8 @@ function showFullApplication(idOfButton) {
         pQuestions.innerHTML += questions[i].text + " : " + questions[i].answer;
         document.getElementById("interviewQuestions").appendChild(pQuestions)
     }
-
-
     
 }
-
-
-//Functionality to populate cards with JSON data
-// var cardName1 = jsonVar[0].name;
-// var cardPosition1 = jsonVar[0].position;
-// var cardYOE1 = jsonVar[0].experience;
-// document.getElementById("cardName1").innerHTML = cardName1;
-// document.getElementById("cardPosition1").innerHTML = cardPosition1;
-// document.getElementById("cardYOE1").innerHTML = cardYOE1;
 
 //Looping functionality to populate cards with JSON data
 for( var i = 1; i < 5; i++ ) {
